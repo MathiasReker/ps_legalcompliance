@@ -34,14 +34,14 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	/**
 	 * @see ObjectModel::$definition
 	 */
-	public static $definition = array(
+	public static $definition = [
 		'table' => 'aeuc_cmsrole_email',
 		'primary' => 'id',
-		'fields' => array(
-			'id_mail'	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-			'id_cms_role' 	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-		),
-	);
+		'fields' => [
+			'id_mail'	=> 	['type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'],
+			'id_cms_role' 	=> 	['type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'],
+		],
+	];
 
 	/**
 	 * Truncate Table

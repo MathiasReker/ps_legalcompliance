@@ -24,7 +24,7 @@
  *  International Registered Trademark & Property of PrestaShop SA
  */
 
-$sql = array();
+$sql = [];
 
 /* CMS Role to Mail association */
 $sql[_DB_PREFIX_.'aeuc_cmsrole_email'] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'aeuc_cmsrole_email` (

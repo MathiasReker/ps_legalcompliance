@@ -36,15 +36,15 @@ class AeucEmailEntity extends ObjectModel
 	/**
 	 * @see ObjectModel::$definition
 	 */
-	public static $definition = array(
+	public static $definition = [
 		'table' => 'aeuc_email',
 		'primary' => 'id',
-		'fields' => array(
-			'id_mail'		=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-			'filename' 		=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
-			'display_name' 	=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
-		),
-	);
+		'fields' => [
+			'id_mail'		=> 	['type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'],
+			'filename' 		=> 	['type' => self::TYPE_STRING, 'required' => true, 'size' => 64],
+			'display_name' 	=> 	['type' => self::TYPE_STRING, 'required' => true, 'size' => 64],
+		],
+	];
 
 	/**
 	 * Return the complete email collection from DB

@@ -30,7 +30,7 @@ class AdminAEUCController
 	{
 		$this->bootstrap = true;
 		$this->display = 'view';
-		$this->meta_title = $this->trans('Legal Compliance', array(), 'Modules.Legalcompliance.Admin');
+		$this->meta_title = $this->trans('Legal Compliance', [], 'Modules.Legalcompliance.Admin');
 		parent::__construct();
 		if (!$this->module->active)
 			Tools::redirectAdmin($this->context->link->getAdminLink('AdminHome'));
