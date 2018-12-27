@@ -93,7 +93,4 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
         return Db::getInstance()->executeS($sql);
     }
-
-
-
 }
