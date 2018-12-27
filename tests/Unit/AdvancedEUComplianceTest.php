@@ -28,7 +28,7 @@ namespace PrestaShop\PrestaShop\Tests\Unit;
 
 use Advancedeucompliance;
 use Hook;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PrestaShop\PrestaShop\Tests\Helper\Module;
 use PrestaShop\PrestaShop\Tests\TestCase\UnitTestCase;
 use RepositoryManager;
