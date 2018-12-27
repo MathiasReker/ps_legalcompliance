@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2016 PrestaShop.
  *
  * NOTICE OF LICENSE
  *
@@ -47,7 +47,7 @@ class AeucEmailEntity extends ObjectModel
 	);
 
 	/**
-	 * Return the complete email collection from DB
+	 * Return the complete email collection from DB.
 	 * @return array|false
 	 * @throws PrestaShopDatabaseException
 	 */

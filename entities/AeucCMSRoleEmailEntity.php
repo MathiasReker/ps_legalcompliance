@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2016 PrestaShop.
  *
  * NOTICE OF LICENSE
  *
@@ -44,7 +44,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	);
 
 	/**
-	 * Truncate Table
+	 * Truncate Table.
 	 * @return array|false
 	 * @throws PrestaShopDatabaseException
 	 */
@@ -55,7 +55,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	}
 
 	/**
-	 * Return the complete list of cms_role_ids associated
+	 * Return the complete list of cms_role_ids associated.
 	 * @return array|false
 	 * @throws PrestaShopDatabaseException
 	 */
@@ -71,7 +71,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
 
 	/**
-	 * Return the complete email collection from DB
+	 * Return the complete email collection from DB.
 	 * @return array|false
 	 * @throws PrestaShopDatabaseException
 	 */
