@@ -42,20 +42,32 @@ class Ps_LegalCompliance extends Module
 {
     /* Class members */
     protected $config_form = false;
+
     protected $entity_manager;
+
     protected $filesystem;
+
     protected $emails;
+
     protected $_errors = array();
+
     protected $_warnings = array();
 
     /* Constants used for LEGAL/CMS Management */
     const LEGAL_NO_ASSOC = 'NO_ASSOC';
+
     const LEGAL_NOTICE = 'LEGAL_NOTICE';
+
     const LEGAL_CONDITIONS = 'LEGAL_CONDITIONS';
+
     const LEGAL_REVOCATION = 'LEGAL_REVOCATION';
+
     const LEGAL_REVOCATION_FORM = 'LEGAL_REVOCATION_FORM';
+
     const LEGAL_PRIVACY = 'LEGAL_PRIVACY';
+
     const LEGAL_ENVIRONMENTAL = 'LEGAL_ENVIRONMENTAL';
+
     const LEGAL_SHIP_PAY = 'LEGAL_SHIP_PAY';
 
     public function __construct(EntityManager $entity_manager,

@@ -28,6 +28,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 {
 	/** @var string name */
 	public $id_cms_role;
+
 	/** @var integer id_cms */
 	public $id_mail;
 
@@ -69,7 +70,6 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 		return Db::getInstance()->executeS($sql);
 	}
 
-
 	/**
 	 * Return the complete email collection from DB
 	 * @return array|false
@@ -93,7 +93,4 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
 		return Db::getInstance()->executeS($sql);
 	}
-
-
-
 }

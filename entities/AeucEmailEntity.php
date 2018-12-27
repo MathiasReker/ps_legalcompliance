@@ -28,8 +28,10 @@ class AeucEmailEntity extends ObjectModel
 {
 	/** @var integer id_mail */
 	public $id_mail;
+
 	/** @var string filename */
 	public $filename;
+
 	/** @var string display_name */
 	public $display_name;
 
