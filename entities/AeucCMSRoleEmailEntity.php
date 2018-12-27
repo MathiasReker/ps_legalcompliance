@@ -45,7 +45,9 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
 	/**
 	 * Truncate Table.
+	 *
 	 * @return array|false
+	 *
 	 * @throws PrestaShopDatabaseException
 	 */
 	public static function truncate()
@@ -56,7 +58,9 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
 	/**
 	 * Return the complete list of cms_role_ids associated.
+	 *
 	 * @return array|false
+	 *
 	 * @throws PrestaShopDatabaseException
 	 */
 	public static function getIdEmailFromCMSRoleId($id_cms_role)
@@ -72,7 +76,9 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 
 	/**
 	 * Return the complete email collection from DB.
+	 *
 	 * @return array|false
+	 *
 	 * @throws PrestaShopDatabaseException
 	 */
 	public static function getAll()

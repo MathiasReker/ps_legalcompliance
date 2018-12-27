@@ -48,7 +48,9 @@ class AeucEmailEntity extends ObjectModel
 
 	/**
 	 * Return the complete email collection from DB.
+	 *
 	 * @return array|false
+	 *
 	 * @throws PrestaShopDatabaseException
 	 */
 	public static function getAll()
