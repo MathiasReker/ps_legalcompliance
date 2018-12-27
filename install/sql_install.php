@@ -18,7 +18,7 @@
  * versions in the future. If you wish to customize PrestaShop for your
  * needs please refer to http://www.prestashop.com for more information.
  *
- *  @author 	PrestaShop SA <contact@prestashop.com>
+ *  @author     PrestaShop SA <contact@prestashop.com>
  *  @copyright  2007-2016 PrestaShop SA
  *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
@@ -28,18 +28,18 @@ $sql = array();
 
 /* CMS Role to Mail association */
 $sql[_DB_PREFIX_.'aeuc_cmsrole_email'] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'aeuc_cmsrole_email` (
-			  `id` int(11) NOT NULL AUTO_INCREMENT,
-			  `id_cms_role` int(11) NOT NULL,
-			  `id_mail` int(11) NOT NULL,
-			  PRIMARY KEY (`id`)
-			) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
+    		  `id` int(11) NOT NULL AUTO_INCREMENT,
+    		  `id_cms_role` int(11) NOT NULL,
+    		  `id_mail` int(11) NOT NULL,
+    		  PRIMARY KEY (`id`)
+    		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
 
 /* Mail table */
 $sql[_DB_PREFIX_.'aeuc_email'] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'aeuc_email` (
-			  `id_mail` int(11) NOT NULL AUTO_INCREMENT,
-			  `filename` varchar(64) NOT NULL,
-			  `display_name` varchar(64) NOT NULL,
-			  PRIMARY KEY (`id_mail`)
-			) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
+    		  `id_mail` int(11) NOT NULL AUTO_INCREMENT,
+    		  `filename` varchar(64) NOT NULL,
+    		  `display_name` varchar(64) NOT NULL,
+    		  PRIMARY KEY (`id_mail`)
+    		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
 
 return $sql;

@@ -306,7 +306,7 @@ class Ps_LegalCompliance extends Module
             $cms_page_conditions_associated = $cms_role_repository->findOneByName(self::LEGAL_CONDITIONS);
 
             $sql = 'SELECT id_link_block, content
-    				FROM '._DB_PREFIX_.'link_block';
+        			FROM '._DB_PREFIX_.'link_block';
             $link_blocks = Db::getInstance()->executeS($sql);
             foreach ($link_blocks as $link_block) {
                 $conditions_found = false;
