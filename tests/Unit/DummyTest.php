@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PrestaShop\PrestaShop\Tests\Unit;
-
 
 use PHPUnit_Framework_TestCase;
 

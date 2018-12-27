@@ -95,5 +95,4 @@ $_MODULE['<{advancedeucompliance}prestashop>hookoverridetosdisplay_8dcb551200cf4
 $_MODULE['<{advancedeucompliance}prestashop>hookoverridetosdisplay_34f1e293041593ba9867658178b3ec19'] = 'Ich habe die Allgemeinen Geschäftsbedingungen zur Kenntnis genommen und stimme uneingeschränkt zu. [1]Allgemeine Geschäftsbedingungen lesen [/1]';
 $_MODULE['<{advancedeucompliance}prestashop>hookoverridetosdisplay_5d98b28e551153416f32493f5dc27a1f'] = 'Mir ist bekannt, dass Download-Artikel weder zurückgesandt noch erstattet werden können.';
 
-
 return $_MODULE;
