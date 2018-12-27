@@ -26,48 +26,48 @@
 
 class AeucEmailEntity extends ObjectModel
 {
-	/** @var integer id_mail */
-	public $id_mail;
-	/** @var string filename */
-	public $filename;
-	/** @var string display_name */
-	public $display_name;
+    /** @var integer id_mail */
+    public $id_mail;
+    /** @var string filename */
+    public $filename;
+    /** @var string display_name */
+    public $display_name;
 
-	/**
-	 * @see ObjectModel::$definition
-	 */
-	public static $definition = array(
-		'table' => 'aeuc_email',
-		'primary' => 'id',
-		'fields' => array(
-			'id_mail'		=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-			'filename' 		=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
-			'display_name' 	=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
-		),
-	);
+    /**
+     * @see ObjectModel::$definition
+     */
+    public static $definition = array(
+        'table' => 'aeuc_email',
+        'primary' => 'id',
+        'fields' => array(
+            'id_mail'		=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
+            'filename' 		=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
+            'display_name' 	=> 	array('type' => self::TYPE_STRING, 'required' => true, 'size' => 64),
+        ),
+    );
 
-	/**
-	 * Return the complete email collection from DB
-	 * @return array|false
-	 * @throws PrestaShopDatabaseException
-	 */
-	public static function getAll()
-	{
-		$sql = '
+    /**
+     * Return the complete email collection from DB
+     * @return array|false
+     * @throws PrestaShopDatabaseException
+     */
+    public static function getAll()
+    {
+        $sql = '
 		SELECT *
 		FROM `'._DB_PREFIX_.AeucEmailEntity::$definition['table'].'`';
 
-		return Db::getInstance()->executeS
-		($sql);
-	}
+        return Db::getInstance()->executeS
+        ($sql);
+    }
 
-	public static function getMailIdFromTplFilename($tpl_name)
-	{
-		$sql = '
+    public static function getMailIdFromTplFilename($tpl_name)
+    {
+        $sql = '
 		SELECT `id_mail`
 		FROM `'._DB_PREFIX_.AeucEmailEntity::$definition['table'].'`
 		WHERE `filename` = "'.pSQL($tpl_name).'"';
 
-		return Db::getInstance()->getRow($sql);
-	}
+        return Db::getInstance()->getRow($sql);
+    }
 }

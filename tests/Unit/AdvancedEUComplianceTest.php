@@ -38,14 +38,14 @@ require_once(_PS_ROOT_DIR_.'/tests/TestCase/UnitTestCase.php');
 
 class AdvancedEUComplianceTest extends UnitTestCase
 {
-	public function setup()
-	{
+    public function setup()
+    {
 
-		parent::setUpCommonStaticMocks();
-	}
+        parent::setUpCommonStaticMocks();
+    }
 
-	public function teardown()
-	{
-		parent::tearDownCommonStaticMocks();
-	}
+    public function teardown()
+    {
+        parent::tearDownCommonStaticMocks();
+    }
 }

@@ -26,73 +26,73 @@
 
 class AeucCMSRoleEmailEntity extends ObjectModel
 {
-	/** @var string name */
-	public $id_cms_role;
-	/** @var integer id_cms */
-	public $id_mail;
+    /** @var string name */
+    public $id_cms_role;
+    /** @var integer id_cms */
+    public $id_mail;
 
-	/**
-	 * @see ObjectModel::$definition
-	 */
-	public static $definition = array(
-		'table' => 'aeuc_cmsrole_email',
-		'primary' => 'id',
-		'fields' => array(
-			'id_mail'	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-			'id_cms_role' 	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
-		),
-	);
+    /**
+     * @see ObjectModel::$definition
+     */
+    public static $definition = array(
+        'table' => 'aeuc_cmsrole_email',
+        'primary' => 'id',
+        'fields' => array(
+            'id_mail'	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
+            'id_cms_role' 	=> 	array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt'),
+        ),
+    );
 
-	/**
-	 * Truncate Table
-	 * @return array|false
-	 * @throws PrestaShopDatabaseException
-	 */
-	public static function truncate()
-	{
-		$sql = 'TRUNCATE `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
-		return Db::getInstance()->execute($sql);
-	}
+    /**
+     * Truncate Table
+     * @return array|false
+     * @throws PrestaShopDatabaseException
+     */
+    public static function truncate()
+    {
+        $sql = 'TRUNCATE `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
+        return Db::getInstance()->execute($sql);
+    }
 
-	/**
-	 * Return the complete list of cms_role_ids associated
-	 * @return array|false
-	 * @throws PrestaShopDatabaseException
-	 */
-	public static function getIdEmailFromCMSRoleId($id_cms_role)
-	{
-		$sql = '
+    /**
+     * Return the complete list of cms_role_ids associated
+     * @return array|false
+     * @throws PrestaShopDatabaseException
+     */
+    public static function getIdEmailFromCMSRoleId($id_cms_role)
+    {
+        $sql = '
 		SELECT `id_mail`
 		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`
 		WHERE `id_cms_role` = '.(int)$id_cms_role;
 
-		return Db::getInstance()->executeS($sql);
-	}
+        return Db::getInstance()->executeS($sql);
+    }
 
 
-	/**
-	 * Return the complete email collection from DB
-	 * @return array|false
-	 * @throws PrestaShopDatabaseException
-	 */
-	public static function getAll()
-	{
-		$sql = '
+    /**
+     * Return the complete email collection from DB
+     * @return array|false
+     * @throws PrestaShopDatabaseException
+     */
+    public static function getAll()
+    {
+        $sql = '
 		SELECT *
 		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
 
-		return Db::getInstance()->executeS($sql);
-	}
+        return Db::getInstance()->executeS($sql);
+    }
 
-	public static function getCMSRoleIdsFromIdMail($id_mail)
-	{
-		$sql = '
+    public static function getCMSRoleIdsFromIdMail($id_mail)
+    {
+        $sql = '
 		SELECT DISTINCT(`id_cms_role`)
 		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`
 		WHERE `id_mail` = '.(int)$id_mail;
 
-		return Db::getInstance()->executeS($sql);
-	}
+        return Db::getInstance()->executeS($sql);
+    }
 
 
 
