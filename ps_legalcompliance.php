@@ -27,20 +27,20 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-/* Namespaces used in this module */
+// Namespaces used in this module
 use PrestaShop\PrestaShop\Core\Foundation\Database\EntityManager;
 use PrestaShop\PrestaShop\Core\Foundation\Filesystem\FileSystem;
 use PrestaShop\PrestaShop\Core\Email\EmailLister;
 use PrestaShop\PrestaShop\Core\Checkout\TermsAndConditions;
 use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
 
-/* Include required entities */
+// Include required entities
 include_once dirname(__FILE__).'/entities/AeucCMSRoleEmailEntity.php';
 include_once dirname(__FILE__).'/entities/AeucEmailEntity.php';
 
 class Ps_LegalCompliance extends Module
 {
-    /* Class members */
+    // Class members
     protected $config_form = false;
     protected $entity_manager;
     protected $filesystem;
@@ -48,7 +48,7 @@ class Ps_LegalCompliance extends Module
     protected $_errors = array();
     protected $_warnings = array();
 
-    /* Constants used for LEGAL/CMS Management */
+    // Constants used for LEGAL/CMS Management
     const LEGAL_NO_ASSOC = 'NO_ASSOC';
     const LEGAL_NOTICE = 'LEGAL_NOTICE';
     const LEGAL_CONDITIONS = 'LEGAL_CONDITIONS';
@@ -71,7 +71,7 @@ class Ps_LegalCompliance extends Module
 
         parent::__construct();
 
-        /* Register dependencies to module */
+        // Register dependencies to module
         $this->entity_manager = $entity_manager;
         $this->filesystem = $fs;
         $this->emails = $email;
@@ -82,7 +82,7 @@ class Ps_LegalCompliance extends Module
 
         $this->ps_versions_compliancy = array('min' => '1.7.3.0', 'max' => _PS_VERSION_);
 
-        /* Init errors var */
+        // Init errors var
         $this->_errors = array();
     }
 
@@ -227,7 +227,7 @@ class Ps_LegalCompliance extends Module
             $custom_cart_text_values[(int) $lang->id] = $this->trans('The order will only be confirmed when you click on the button \'Order with an obligation to pay\' at the end of the checkout!', array(), 'Modules.Legalcompliance.Shop', $lang->locale);
         }
 
-        /* Base settings */
+        // Base settings
         $this->processAeucFeatReorder(true);
         $this->processAeucLabelRevocationTOS(false);
         $this->processAeucLabelRevocationVP(false);
@@ -622,7 +622,7 @@ class Ps_LegalCompliance extends Module
         }
     }
 
-    /* This hook is present to maintain backward compatibility */
+    // This hook is present to maintain backward compatibility
     public function hookAdvancedPaymentOptions($param)
     {
         $legacyOptions = Hook::exec('displayPaymentEU', array(), null, true);
@@ -870,7 +870,7 @@ class Ps_LegalCompliance extends Module
 
         $smartyVars = array();
 
-        /* Handle Product Combinations label */
+        // Handle Product Combinations label
         if ($param['type'] == 'before_price' && (bool) Configuration::get('AEUC_LABEL_COMBINATION_FROM') === true) {
             if ($product->hasAttributes()) {
                 $need_display = false;
@@ -897,7 +897,7 @@ class Ps_LegalCompliance extends Module
             }
         }
 
-        /* Handle Specific Price label*/
+        // Handle Specific Price label
         if ($param['type'] == 'old_price' && (bool) Configuration::get('AEUC_LABEL_SPECIFIC_PRICE') === true && 'catalog/_partials/miniatures/product.tpl' != $param['smarty']->template_resource) {
             $smartyVars['old_price'] = array();
             $smartyVars['old_price']['before_str_i18n'] = $this->trans('Our previous price', array(), 'Modules.Legalcompliance.Shop');
@@ -905,7 +905,7 @@ class Ps_LegalCompliance extends Module
             return $this->dumpHookDisplayProductPriceBlock($smartyVars, $hook_type);
         }
 
-        /* Handle Shipping Inc./Exc.*/
+        // Handle Shipping Inc./Exc.
         if ($param['type'] == 'price') {
             $smartyVars['price'] = array();
             $need_shipping_label = true;
@@ -933,7 +933,7 @@ class Ps_LegalCompliance extends Module
             return $this->dumpHookDisplayProductPriceBlock($smartyVars, $hook_type);
         }
 
-        /* Handle Delivery time label */
+        // Handle Delivery time label
         if ($param['type'] == 'after_price' && !$product->is_virtual) {
             $context_id_lang = $this->context->language->id;
             $smartyVars['after_price'] = array();
@@ -946,7 +946,7 @@ class Ps_LegalCompliance extends Module
             return $this->dumpHookDisplayProductPriceBlock($smartyVars, $hook_type);
         }
 
-        /* Handle Taxes Inc./Exc.*/
+        // Handle Taxes Inc./Exc.
         if ($param['type'] == 'list_taxes') {
             $smartyVars['list_taxes'] = array();
             if ((bool) Configuration::get('AEUC_LABEL_TAX_INC_EXC') === true) {
@@ -964,7 +964,7 @@ class Ps_LegalCompliance extends Module
             return $this->dumpHookDisplayProductPriceBlock($smartyVars, $hook_type);
         }
 
-        /* Handle Unit prices */
+        // Handle Unit prices
         if ($param['type'] == 'unit_price') {
             if ((!empty($product->unity) && $product->unit_price_ratio > 0.000000)) {
                 $smartyVars['unit_price'] = array();
@@ -1065,7 +1065,7 @@ class Ps_LegalCompliance extends Module
         $received_values = Tools::getAllValues();
 
         foreach (array_keys($received_values) as $key_received) {
-            /* Case its one of form with only switches in it */
+            // Case its one of form with only switches in it
             if (in_array($key_received, $post_keys_switchable)) {
                 $is_option_active = Tools::getValue($key_received);
                 $key = Tools::strtolower($key_received);
@@ -1077,7 +1077,7 @@ class Ps_LegalCompliance extends Module
                 }
                 continue;
             }
-            /* Case we are on more complex forms */
+            // Case we are on more complex forms
             if (in_array($key_received, $post_keys_complex)) {
                 // Clean key
                 $key = Tools::strtolower($key_received);
@@ -1089,7 +1089,7 @@ class Ps_LegalCompliance extends Module
                 }
             }
 
-            /* Case Multi-lang input */
+            // Case Multi-lang input
             if (strripos($key_received, 'AEUC_LABEL_CUSTOM_CART_TEXT') !== false) {
                 $exploded = explode('_', $key_received);
                 $count = count($exploded);
@@ -1312,7 +1312,7 @@ class Ps_LegalCompliance extends Module
 
         $helper->tpl_vars =
             array('fields_value' => $this->getConfigFormLabelsManagerValues(),
-                  /* Add values for your inputs */
+                  // Add values for your inputs
                   'languages' => $this->context->controller->getLanguages(),
                   'id_language' => $this->context->language->id,
             );
@@ -1526,7 +1526,7 @@ class Ps_LegalCompliance extends Module
 
         $helper->tpl_vars = array(
             'fields_value' => $this->getConfigFormFeaturesManagerValues(),
-            /* Add values for your inputs */
+            // Add values for your inputs
             'languages' => $this->context->controller->getLanguages(),
             'id_language' => $this->context->language->id,
         );
