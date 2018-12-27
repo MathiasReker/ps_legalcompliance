@@ -35,8 +35,8 @@ use PrestaShop\PrestaShop\Core\Checkout\TermsAndConditions;
 use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
 
 /* Include required entities */
-include_once dirname(__FILE__).'/entities/AeucCMSRoleEmailEntity.php';
-include_once dirname(__FILE__).'/entities/AeucEmailEntity.php';
+include_once dirname(__FILE__) . '/entities/AeucCMSRoleEmailEntity.php';
+include_once dirname(__FILE__) . '/entities/AeucEmailEntity.php';
 
 class Ps_LegalCompliance extends Module
 {
@@ -209,7 +209,7 @@ class Ps_LegalCompliance extends Module
 
             if (!$new_hook->add()) {
                 $return &= false;
-                $this->_errors[] = $this->trans('Could not install new hook', array(), 'Modules.Legalcompliance.Admin').': '.$hook_name;
+                $this->_errors[] = $this->trans('Could not install new hook', array(), 'Modules.Legalcompliance.Admin') . ': ' . $hook_name;
             }
         }
 
@@ -285,7 +285,7 @@ class Ps_LegalCompliance extends Module
                 $cms->id_cms_category = 1;
                 foreach ($langs as $lang) {
                     $cms->meta_title[(int) $lang->id] = $cms_page['meta_title'];
-                    $cms->link_rewrite[(int) $lang->id] = 'aeu-legal-'.$cms_page['link_rewrite'];
+                    $cms->link_rewrite[(int) $lang->id] = 'aeu-legal-' . $cms_page['link_rewrite'];
                     $cms->content[(int) $lang->id] = $cms_page['content'];
                 }
                 $cms->active = 1;
@@ -306,7 +306,7 @@ class Ps_LegalCompliance extends Module
             $cms_page_conditions_associated = $cms_role_repository->findOneByName(self::LEGAL_CONDITIONS);
 
             $sql = 'SELECT id_link_block, content
-    				FROM '._DB_PREFIX_.'link_block';
+    				FROM ' . _DB_PREFIX_ . 'link_block';
             $link_blocks = Db::getInstance()->executeS($sql);
             foreach ($link_blocks as $link_block) {
                 $conditions_found = false;
@@ -322,7 +322,7 @@ class Ps_LegalCompliance extends Module
                 if ($conditions_found) {
                     $content['cms'] = array_values($content['cms']);
                     $content = json_encode($content);
-                    Db::getInstance()->update('link_block', array('content' => pSQL($content)), '`id_link_block` = '.(int) $link_block['id_link_block']);
+                    Db::getInstance()->update('link_block', array('content' => pSQL($content)), '`id_link_block` = ' . (int) $link_block['id_link_block']);
                 }
             }
         }
@@ -406,9 +406,9 @@ class Ps_LegalCompliance extends Module
     public function unloadTables()
     {
         $state = true;
-        $sql = require dirname(__FILE__).'/install/sql_install.php';
+        $sql = require dirname(__FILE__) . '/install/sql_install.php';
         foreach ($sql as $name => $v) {
-            $state &= Db::getInstance()->execute('DROP TABLE IF EXISTS '.$name);
+            $state &= Db::getInstance()->execute('DROP TABLE IF EXISTS ' . $name);
         }
 
         return $state;
@@ -419,7 +419,7 @@ class Ps_LegalCompliance extends Module
         $state = true;
 
         // Create module's table
-        $sql = require dirname(__FILE__).'/install/sql_install.php';
+        $sql = require dirname(__FILE__) . '/install/sql_install.php';
         foreach ($sql as $s) {
             $state &= Db::getInstance()->execute($s);
         }
@@ -438,7 +438,7 @@ class Ps_LegalCompliance extends Module
             }
         }
 
-        $default_path_email = _PS_MAIL_DIR_.'en'.DIRECTORY_SEPARATOR;
+        $default_path_email = _PS_MAIL_DIR_ . 'en' . DIRECTORY_SEPARATOR;
         // Fill-in aeuc_mail table
         foreach ($this->emails->getAvailableMails($default_path_email) as $mail) {
             $new_email = new AeucEmailEntity();
@@ -566,7 +566,7 @@ class Ps_LegalCompliance extends Module
             if ($cms_page_associated instanceof CMSRole && (int) $cms_page_associated->id_cms > 0) {
                 $cms = new CMS((int) $cms_page_associated->id_cms);
                 $cms_links[] = array('link' => $this->context->link->getCMSLink($cms->id, null, $is_ssl_enabled),
-                                     'id' => 'cms-page-'.$cms->id,
+                                     'id' => 'cms-page-' . $cms->id,
                                      'title' => $cms->meta_title[$this->context->language->id],
                                      'desc' => $cms->meta_description[$this->context->language->id],
                 );
@@ -724,20 +724,20 @@ class Ps_LegalCompliance extends Module
 
         $carrier = new Carrier((int) $param['cart']->id_carrier);
 
-        $param['template_vars']['{carrier}'] .= ' - '.$carrier->delay[(int) $param['cart']->id_lang];
+        $param['template_vars']['{carrier}'] .= ' - ' . $carrier->delay[(int) $param['cart']->id_lang];
     }
 
     public function hookHeader($param)
     {
-        $this->context->controller->registerStylesheet('modules-aeuc_front', 'modules/'.$this->name.'/views/css/aeuc_front.css', ['media' => 'all', 'priority' => 150]);
+        $this->context->controller->registerStylesheet('modules-aeuc_front', 'modules/' . $this->name . '/views/css/aeuc_front.css', ['media' => 'all', 'priority' => 150]);
 
         if (isset($this->context->controller->php_self) && ($this->context->controller->php_self == 'cms')) {
             if ($this->isPrintableCMSPage()) {
-                $this->context->controller->registerStylesheet('modules-aeuc_print', 'modules/'.$this->name.'/views/css/aeuc_print.css', ['media' => 'print', 'priority' => 150]);
+                $this->context->controller->registerStylesheet('modules-aeuc_print', 'modules/' . $this->name . '/views/css/aeuc_print.css', ['media' => 'print', 'priority' => 150]);
             }
         }
         if (Tools::getValue('direct_print') == '1') {
-            $this->context->controller->registerJavascript('modules-fo_aeuc_print', 'modules/'.$this->name.'/views/js/fo_aeuc_print.js', ['position' => 'bottom', 'priority' => 150]);
+            $this->context->controller->registerJavascript('modules-fo_aeuc_print', 'modules/' . $this->name . '/views/js/fo_aeuc_print.js', ['position' => 'bottom', 'priority' => 150]);
         }
     }
 
@@ -1007,10 +1007,10 @@ class Ps_LegalCompliance extends Module
 
     private function dumpHookDisplayProductPriceBlock(array $smartyVars, $hook_type, $additional_cache_param = false)
     {
-        $cache_id = sha1($hook_type.$additional_cache_param);
+        $cache_id = sha1($hook_type . $additional_cache_param);
         $this->context->smarty->assign(array('smartyVars' => $smartyVars));
-        $this->context->controller->addJS($this->_path.'views/js/fo_aeuc_tnc.js', true);
-        $template = 'hookDisplayProductPriceBlock_'.$hook_type.'.tpl';
+        $this->context->controller->addJS($this->_path . 'views/js/fo_aeuc_tnc.js', true);
+        $template = 'hookDisplayProductPriceBlock_' . $hook_type . '.tpl';
 
         return $this->display(__FILE__, $template, $cache_id);
     }
@@ -1035,14 +1035,14 @@ class Ps_LegalCompliance extends Module
 
         $this->context->smarty->assign('module_dir', $this->_path);
         $this->context->smarty->assign('errors', $this->_errors);
-        $this->context->controller->addCSS($this->_path.'views/css/configure.css', 'all');
+        $this->context->controller->addCSS($this->_path . 'views/css/configure.css', 'all');
         // Render all required form for each 'part'
         $formLabelsManager = $this->renderFormLabelsManager();
         $formFeaturesManager = $this->renderFormFeaturesManager();
         $formLegalContentManager = $this->renderFormLegalContentManager();
         $formEmailAttachmentsManager = $this->renderFormEmailAttachmentsManager();
 
-        return $theme_warning.$this->adminDisplayInformation($infoMsg).$success_band.$formLabelsManager.$formFeaturesManager.$formLegalContentManager.
+        return $theme_warning . $this->adminDisplayInformation($infoMsg) . $success_band . $formLabelsManager . $formFeaturesManager . $formLegalContentManager .
                $formEmailAttachmentsManager;
     }
 
@@ -1071,8 +1071,8 @@ class Ps_LegalCompliance extends Module
                 $key = Tools::strtolower($key_received);
                 $key = Tools::toCamelCase($key);
 
-                if (method_exists($this, 'process'.$key)) {
-                    $this->{'process'.$key}($is_option_active);
+                if (method_exists($this, 'process' . $key)) {
+                    $this->{'process' . $key}($is_option_active);
                     $has_processed_something = true;
                 }
                 continue;
@@ -1083,8 +1083,8 @@ class Ps_LegalCompliance extends Module
                 $key = Tools::strtolower($key_received);
                 $key = Tools::toCamelCase($key, true);
 
-                if (method_exists($this, 'process'.$key)) {
-                    $this->{'process'.$key}();
+                if (method_exists($this, 'process' . $key)) {
+                    $this->{'process' . $key}();
                     $has_processed_something = true;
                 }
             }
@@ -1112,12 +1112,12 @@ class Ps_LegalCompliance extends Module
         if ($has_processed_something) {
             $this->emptyTemplatesCache();
 
-            return (count($this->_errors) ? $this->displayError($this->_errors) : '').
-                   (count($this->_warnings) ? $this->displayWarning($this->_warnings) : '').
+            return (count($this->_errors) ? $this->displayError($this->_errors) : '') .
+                   (count($this->_warnings) ? $this->displayWarning($this->_warnings) : '') .
                    $this->displayConfirmation($this->trans('The settings have been updated.', array(), 'Admin.Notifications.Success'));
         } else {
-            return (count($this->_errors) ? $this->displayError($this->_errors) : '').
-                   (count($this->_warnings) ? $this->displayWarning($this->_warnings) : '').'';
+            return (count($this->_errors) ? $this->displayError($this->_errors) : '') .
+                   (count($this->_warnings) ? $this->displayWarning($this->_warnings) : '') . '';
         }
     }
 
@@ -1306,8 +1306,8 @@ class Ps_LegalCompliance extends Module
         $helper->identifier = $this->identifier;
         $helper->submit_action = 'submitAEUC_labelsManager';
         $helper->currentIndex =
-            $this->context->link->getAdminLink('AdminModules', false).'&configure='.$this->name.'&tab_module='.
-            $this->tab.'&module_name='.$this->name.'&token='.Tools::getAdminTokenLite('AdminModules');
+            $this->context->link->getAdminLink('AdminModules', false) . '&configure=' . $this->name . '&tab_module=' .
+            $this->tab . '&module_name=' . $this->name . '&token=' . Tools::getAdminTokenLite('AdminModules');
         $helper->token = Tools::getAdminTokenLite('AdminModules');
 
         $helper->tpl_vars =
@@ -1521,7 +1521,7 @@ class Ps_LegalCompliance extends Module
         $helper->identifier = $this->identifier;
         $helper->submit_action = 'submitAEUC_featuresManager';
         $helper->currentIndex = $this->context->link->getAdminLink('AdminModules', false)
-                                .'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
+                                . '&configure=' . $this->name . '&tab_module=' . $this->tab . '&module_name=' . $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
 
         $helper->tpl_vars = array(
@@ -1642,7 +1642,7 @@ class Ps_LegalCompliance extends Module
         $this->context->smarty->assign(array(
                                            'cms_roles_assoc' => $cms_roles_assoc,
                                            'cms_pages' => $cms_pages,
-                                           'form_action' => $this->context->link->getAdminLink('AdminModules').'&configure='.$this->name,
+                                           'form_action' => $this->context->link->getAdminLink('AdminModules') . '&configure=' . $this->name,
                                            'add_cms_link' => $this->context->link->getAdminLink('AdminCMS'),
                                        ));
 
@@ -1680,11 +1680,11 @@ class Ps_LegalCompliance extends Module
                                            'has_assoc' => $cms_roles_associated,
                                            'mails_available' => $cleaned_mails_names,
                                            'legal_options' => $legal_options,
-                                           'form_action' => $this->context->link->getAdminLink('AdminModules').'&configure='.$this->name,
+                                           'form_action' => $this->context->link->getAdminLink('AdminModules') . '&configure=' . $this->name,
                                        ));
 
         // Insert JS in the page
-        $this->context->controller->addJS(($this->_path).'views/js/email_attachement.js');
+        $this->context->controller->addJS(($this->_path) . 'views/js/email_attachement.js');
 
         return $this->display(__FILE__, 'views/templates/admin/email_attachments_form.tpl');
     }

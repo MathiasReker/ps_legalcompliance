@@ -55,7 +55,7 @@ class AeucEmailEntity extends ObjectModel
 	{
 		$sql = '
 		SELECT *
-		FROM `'._DB_PREFIX_.AeucEmailEntity::$definition['table'].'`';
+		FROM `' . _DB_PREFIX_ . AeucEmailEntity::$definition['table'] . '`';
 
 		return Db::getInstance()->executeS
 		($sql);
@@ -65,8 +65,8 @@ class AeucEmailEntity extends ObjectModel
 	{
 		$sql = '
 		SELECT `id_mail`
-		FROM `'._DB_PREFIX_.AeucEmailEntity::$definition['table'].'`
-		WHERE `filename` = "'.pSQL($tpl_name).'"';
+		FROM `' . _DB_PREFIX_ . AeucEmailEntity::$definition['table'] . '`
+		WHERE `filename` = "' . pSQL($tpl_name) . '"';
 
 		return Db::getInstance()->getRow($sql);
 	}

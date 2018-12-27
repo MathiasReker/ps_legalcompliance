@@ -50,7 +50,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	 */
 	public static function truncate()
 	{
-		$sql = 'TRUNCATE `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
+		$sql = 'TRUNCATE `' . _DB_PREFIX_ . AeucCMSRoleEmailEntity::$definition['table'] . '`';
 		return Db::getInstance()->execute($sql);
 	}
 
@@ -63,8 +63,8 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	{
 		$sql = '
 		SELECT `id_mail`
-		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`
-		WHERE `id_cms_role` = '.(int)$id_cms_role;
+		FROM `' . _DB_PREFIX_ . AeucCMSRoleEmailEntity::$definition['table'] . '`
+		WHERE `id_cms_role` = ' . (int)$id_cms_role;
 
 		return Db::getInstance()->executeS($sql);
 	}
@@ -79,7 +79,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	{
 		$sql = '
 		SELECT *
-		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
+		FROM `' . _DB_PREFIX_ . AeucCMSRoleEmailEntity::$definition['table'] . '`';
 
 		return Db::getInstance()->executeS($sql);
 	}
@@ -88,8 +88,8 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	{
 		$sql = '
 		SELECT DISTINCT(`id_cms_role`)
-		FROM `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`
-		WHERE `id_mail` = '.(int)$id_mail;
+		FROM `' . _DB_PREFIX_ . AeucCMSRoleEmailEntity::$definition['table'] . '`
+		WHERE `id_mail` = ' . (int)$id_mail;
 
 		return Db::getInstance()->executeS($sql);
 	}
