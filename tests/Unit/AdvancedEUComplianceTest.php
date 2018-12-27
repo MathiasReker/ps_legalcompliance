@@ -40,7 +40,6 @@ class AdvancedEUComplianceTest extends UnitTestCase
 {
 	public function setup()
 	{
-
 		parent::setUpCommonStaticMocks();
 	}
 
