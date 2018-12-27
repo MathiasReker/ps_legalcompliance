@@ -412,6 +412,7 @@ class Ps_LegalCompliance extends Module
                 $assoc_obj->save();
             }
         }
+
         return true;
     }
 
@@ -556,6 +557,7 @@ class Ps_LegalCompliance extends Module
                 return false;
             } else {
                 $this->context->smarty->assign('custom_cart_text', $custom_cart_text);
+
                 return $this->display(__FILE__, 'hookDisplayReassurance.tpl');
             }
         }
@@ -859,6 +861,7 @@ class Ps_LegalCompliance extends Module
             }
 
             $this->context->smarty->assign('print_link', $cms_current_link);
+
             return $this->display(__FILE__, 'hookDisplayCMSPrintButton.tpl');
         }
     }
@@ -1007,6 +1010,7 @@ class Ps_LegalCompliance extends Module
             $link = $this->context->link->getCMSLink((int)$cms_page_shipping_and_payment->id_cms);
 
             $this->context->smarty->assign(array('link' => $link));
+
             return $this->display(__FILE__, 'hookDisplayCartPriceBlock_shipping_details.tpl');
         }
     }

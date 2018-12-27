@@ -51,6 +51,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 	public static function truncate()
 	{
 		$sql = 'TRUNCATE `'._DB_PREFIX_.AeucCMSRoleEmailEntity::$definition['table'].'`';
+
 		return Db::getInstance()->execute($sql);
 	}
 
