@@ -28,7 +28,7 @@ class AeucCMSRoleEmailEntity extends ObjectModel
 {
 	/** @var string name */
 	public $id_cms_role;
-	/** @var integer id_cms */
+	/** @var int id_cms */
 	public $id_mail;
 
 	/**
